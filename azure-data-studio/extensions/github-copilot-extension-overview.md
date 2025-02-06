@@ -1,14 +1,75 @@
----
-title: GitHub Copilot extension - Overview
-description: Install GitHub Copilot extension for Azure Data Studio and get started.
-author: subhojit-msft
-ms.author: subasak
-ms.reviewer: erinstellato, drskwier, randolphwest
-ms.date: 10/05/2023
-ms.service: azure-data-studio
-ms.topic: conceptual
----
+# Langkah 1: Instalasi Perangkat Lunak
+Instalasi perangkat lunak yang diperlukan, seperti:
 
+- Access 3.2
+- Node.js
+- TON Dev Suite
+- Library ODBC untuk Access
+
+# Langkah 2: Buat Koneksi ODBC
+Buat koneksi ODBC untuk menghubungkan Access dengan TON Blockchain:
+
+- Buka Control Panel > Administrative Tools > Data Sources (ODBC)
+- Klik "Add" dan pilih "TON Blockchain ODBC Driver"
+- Isi informasi koneksi, seperti alamat node TON, port, dan kredensial
+
+# Langkah 3: Buat Code VBA di Access
+Buat code VBA di Access untuk menghubungkan dengan TON Blockchain:
+
+- Buka Access dan buka modul VBA
+- Tambahkan referensi ke library ODBC
+- Tulis code VBA untuk menghubungkan dengan TON Blockchain menggunakan koneksi ODBC
+
+Contoh code VBA:
+
+```
+Sub ConnectToTON(https://t.me/UXUYbot/app?startapp=B_0x25A71bEa3659d81CA45CcAAb87b146e40d683Ec8bnbchain0x55d398326f99059fF775485246999027B3197955)
+    Dim cn As ADODB.Connection
+    Dim rs As ADODB.Recordset
+    
+    ' Buat koneksi ODBC
+    Set cn = New ADODB.Connection
+    cn.Open "DSN=TON Blockchain ODBC Driver;UID=myuser;PWD=mypassword"
+    
+    ' Buat recordset untuk menyimpan data
+    Set rs = New ADODB.Recordset
+    rs.Open "SELECT * FROM mytable", cn
+    
+    ' Lakukan operasi pada data
+    ' ...
+    
+    ' Tutup recordset dan koneksi
+    rs.Close
+    cn.Close
+    
+    Set rs = Nothing
+    Set cn = Nothing
+End Sub
+```
+
+# Langkah 4: Integrasi dengan TON Blockchain
+Integrasi code VBA dengan TON Blockchain menggunakan library TON Dev Suite:
+
+- Tambahkan referensi ke library TON Dev Suite
+- Tulis code VBA untuk mengirimkan data ke TON Blockchain menggunakan library TON Dev Suite
+
+Contoh code VBA:
+
+```
+Sub SendDataToTON(https://t.me/UXUYbot/app?startapp=B_0x25A71bEa3659d81CA45CcAAb87b146e40d683Ec8bnbchain0x55d398326f99059fF775485246999027B3197955)
+    Dim ton As New TONDevSuite.TON
+    Dim data As String
+    
+    ' Siapkan data untuk dikirim
+    data = "Hello, TON Blockchain!"
+    
+    ' Kirim data ke TON Blockchain
+    ton.SendMessage data
+    
+    ' Tutup koneksi
+    ton.Close
+End Sub
+```
 # GitHub Copilot extension: Overview
 
 [GitHub Copilot](https://github.com/features/copilot) is an AI-powered pair programmer extension for [!INCLUDE [azure-data-studio-short](../includes/azure-data-studio-short.md)] that provides you with context-aware code completions, suggestions, and even entire code snippets. This powerful tool helps developers write code more efficiently, reduce the time spent on repetitive tasks, and minimize errors.
